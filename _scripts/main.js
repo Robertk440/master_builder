@@ -12,7 +12,7 @@
         window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] || window[vendors[x] + 'CancelRequestAnimationFrame'];
     }
 
-    if (!window.requestAnimationFrame)
+    if (!window.requestAnimationFrame){
         window.requestAnimationFrame = function(callback, element) {
             var currTime = new Date().getTime();
             var timeToCall = Math.max(0, 16 - (currTime - lastTime));
@@ -23,11 +23,13 @@
             lastTime = currTime + timeToCall;
             return id;
         };
+    }
 
-    if (!window.cancelAnimationFrame)
+    if (!window.cancelAnimationFrame){
         window.cancelAnimationFrame = function(id) {
             clearTimeout(id);
         };
+    }
 }());
 
 /* Ripple Effect */
@@ -35,7 +37,7 @@ function ripple(e, el){
     'use strict';
 
     var inc = 0;
-    
+
     // create SVG element
     var dummy = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     dummy.setAttributeNS(null, 'version', '1.1');
@@ -79,6 +81,7 @@ function ripple(e, el){
         $('img.lazy').lazyload({
             effect : 'fadeIn'
         });
+
 
         /* Placeholder Alternative */
         (function (){
