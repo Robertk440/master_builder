@@ -1,7 +1,78 @@
 #primary-nav {
-	h1 { margin-left: 0; }
+// 	h1 { margin-left: 0; }
 
-	ul {
-		a:hover { background: lighten( $lightBlue, 10% ); }
+	&.mobile {
+		.lvl2 {
+	        li {
+	        	opacity: 1;
+	        	position: static;
+	        }
+	    }
 	}
+
+	&.tablet {
+		@include box-shadow(0, 2px, 5px, 0, rgba(0, 0, 0, 0.26));
+
+	    & > .nav {
+	    	@include clearfix();
+
+	    	height: 100%;
+	    	margin: auto;
+	    	max-width: 960px;
+	    }
+
+	    h1 {
+	    	margin-left: $gutterTablet;
+	    	padding: 2px 0;
+	    }
+
+	    ul {
+	    	& > li {
+	            opacity: 1;
+	            overflow: visible;
+	            position: static;
+	        }
+
+	        a:hover { background: lighten( $lightBlue, 10% ); }
+	    }
+
+	    button,
+	    .sub-nav,
+	    .lvl2,
+	    .lvl3 { display: none; }
+
+	    .wrap {
+	    	@include box-shadow(0, 0, 0, 0, rgba(0, 0, 0, 0));
+
+	    	position: static;
+	    	width: auto;
+	    }
+
+	    .lvl1 {
+	    	clear: none;
+	        display: block;
+	        float: right;
+	        position: static;
+	        overflow: visible;
+
+	        & > li { border-top: none; }
+
+	        a { padding: 10px 20px; }
+	    }
+
+	    .lvl2 {
+	        float: none;
+	        position: absolute;
+	        right: 0;
+	        z-index: 1;
+
+	        li { float: none; }
+	    }
+
+	    .lvl3 {
+	        width: 100%;
+
+	        li a { padding-left: 20px; }
+	    }
+    }
 }

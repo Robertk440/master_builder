@@ -1,27 +1,80 @@
 #primary-nav {
-	@include box-shadow(0, 2px, 5px, 0, rgba(0, 0, 0, 0.26));
+	&.mobile {
+		// @include box-shadow(0, 2px, 5px, 0, rgba(0, 0, 0, 0.26));
 
-	& > .nav { padding: 0 !important; }
+	    & > .nav {
+	    	@include clearfix();
 
-	h1 { margin-left: $gutterTablet; }
+	    	height: 100%;
+	    	margin: auto;
+	    	max-width: 960px;
+	    }
 
-	button,
-	.sub-nav,
-	.lvl2,
-	.lvl3 { display: none; }
+	    h1 {
+	    	margin-left: $gutterTablet;
+	    	padding: 2px 0;
+	    }
 
-	.lvl2 {
-		float: none;
-		position: absolute;
-		right: 0;
-		z-index: 1;
+	    ul {
+	    	& > li {
+	            opacity: 1;
+	            overflow: visible;
+	            position: static;
+	        }
 
-		li { float: none; }
-	}
+	        a:hover { background: lighten( $lightBlue, 10% ); }
+	    }
 
-	.lvl3 {
-		width: 100%;
+	    button,
+	    .sub-nav,
+	    .lvl2,
+	    .lvl3 { display: none; }
 
-		li a { padding-left: 20px; }
-	}
+	    .wrap {
+	    	@include box-shadow(0, 0, 0, 0, rgba(0, 0, 0, 0));
+
+	    	position: static;
+	    	width: auto;
+	    }
+
+	    .lvl1 {
+	    	clear: none;
+	        display: block;
+	        float: right;
+	        position: static;
+	        overflow: visible;
+
+	        & > li { border-top: none; }
+
+	        a { padding: 10px 20px; }
+	    }
+
+	    .lvl2 {
+	        float: none;
+	        position: absolute;
+	        right: 0;
+	        z-index: 1;
+
+	        li {
+	        	float: none;
+	        	opacity: 0;
+	        	position: relative;
+	        	top: -20px;
+	        }
+	    }
+
+	    .lvl3 {
+	        width: 100%;
+
+	        li a { padding-left: 20px; }
+	    }
+    }
+}
+
+.menu {
+	&.mobile { display: none; }
+}
+
+.mobile-nav {
+	&.mobile {}
 }
