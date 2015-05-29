@@ -4,8 +4,8 @@
             var $el = el,
                 settings = $.extend({
                     // These are the defaults.
-                    menuPos: 'top', // top, bottom
                     dropdownPos: 'static', // static, absolute
+                    menuPos: 'top', // top, bottom
                     displayOn: 'all' // mobile, tablet, desktop/all
                 }, options ),
                 isMobileDevice = $(window).width() <= 768 ? 1 : 0,
