@@ -136,8 +136,8 @@
     border: 0;
     color: $white;
     display: block;
-    height: 48px;
-    padding: 24px;
+    height: 45px;
+    padding: 20px 24px;
     position: absolute;
     right: 0;
     top: 0;
@@ -229,7 +229,7 @@
 
         & > li {
             opacity: 0;
-            top: -20px;
+            bottom: -20px;
         }
 
         li { position: relative; }
@@ -241,15 +241,29 @@
         margin-bottom: 0;
     }
 
-    .lvl2 {
-        background: darken( $blue, 10%);
+    .lvl1 {
+        background: $blue;
+        width: 250px;
 
         li {
             border-top: 1px solid darken( $blue, 20%);
 
             &:first-child { border-top: 0; }
         }
+
         a { padding: 10px 50px 10px 20px; }
+    }
+
+    .lvl2 {
+        background: darken( $blue, 10%);
+        display: none;
+
+        li {
+            border-top: 1px solid darken( $blue, 20%);
+
+            &:first-child { border-top: 0; }
+        }
+        a { padding: 10px 50px 10px 30px; }
     }
 
     .lvl3 {
@@ -261,6 +275,6 @@
 
             &:first-child { border-top: 0; }
         }
-        a { padding: 10px 50px 10px 30px; }
+        a { padding: 10px 50px 10px 40px; }
     }
 }

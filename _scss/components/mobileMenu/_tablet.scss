@@ -25,8 +25,8 @@
 	        a:hover { background: lighten( $lightBlue, 10% ); }
 	    }
 
-	    button,
-	    .sub-nav,
+	    // button,
+	    // .sub-nav,
 	    .lvl2,
 	    .lvl3 { display: none; }
 
@@ -46,7 +46,7 @@
 
 	        & > li { border-top: none; }
 
-	        a { padding: 10px 20px; }
+	        a { padding: 10px 50px 10px 20px; }
 	    }
 
 	    .lvl2 {
@@ -66,15 +66,11 @@
 	    .lvl3 {
 	        width: 100%;
 
-	        li a { padding-left: 20px; }
+	        li a { padding-left: 30px; }
 	    }
     }
 }
 
 .menu {
 	&.mobile { display: none; }
-}
-
-.mobile-nav {
-	&.mobile {}
 }

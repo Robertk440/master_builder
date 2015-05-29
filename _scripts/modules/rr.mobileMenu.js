@@ -9,8 +9,8 @@ var RR = (function (parent, $){
 
     var setup = function (){
         $('#primary-nav').mobileMenu('init', {
-            menuPos: 'top', // top, bottom
             dropdownPos: 'static', // static, absolute
+            menuPos: 'top', // top, bottom
             displayOn: 'all' // mobile, tablet, desktop/all
         });
     };
