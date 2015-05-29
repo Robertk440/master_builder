@@ -33,10 +33,10 @@
 }());
 
 /* Ripple Effect */
+var inc = 0;
 function ripple(e, el){
     'use strict';
 
-    var inc = 0;
 
     // create SVG element
     var dummy = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
