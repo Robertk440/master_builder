@@ -1,17 +1,30 @@
 #primary-nav {
     @extend %clearfix;
+    @include transition( height, 0.2s, ease-in-out );
 
     background: $blue;
+    position: relative;
+    top: 0;
+    width: 100%;
+    z-index: 20;
+
+    &.active { height: 100%; }
+
+    &.absolute {
+        height: auto;
+        position: fixed;
+        top: 0;
+    }
 
     & > .nav {
-        @extend %container;
-
-        padding: 0 20px !important;
+        margin-top: 45px;
+        position: relative;
     }
 
     h1 {
         font-size: 1.4em;
         float: left;
+        margin-left: $gutter;
         padding: 5px 0;
 
         a { color: $white; }
@@ -22,7 +35,13 @@
 
         float: right;
         margin-bottom: 0;
+        overflow: hidden;
         padding: 0;
+
+        & > li {
+            opacity: 0;
+            top: -20px;
+        }
 
         li { float: left; }
 
@@ -44,22 +63,218 @@
         }
     }
 
-    img { @extend .img-responsive; }
+    .container {
+        float: none;
+        padding: 45px 10px 0;
+        // padding: 0 !important;
+    }
 
     .wrap {
+        @include box-shadow(0, 2px, 5px, 0, rgba(0, 0, 0, 0.26));
+        @include clearfix();
+
+        background: $blue;
         float: left;
-        height: 40px;
+        height: 45px;
+        left: 0;
+        padding: 0;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 10;
+    }
+
+    .lvl2,
+    .lvl3 {
+        display: none;
+        float: none;
+        margin: 0;
+
+        a { border-bottom: 0; }
+    }
+
+    .lvl1 {
+        clear: both;
+        float: none;
+        display: none;
+        list-style: none;
+        padding: 0;
+        position: relative;
+        top: 0;
+
+        li {
+            border-top: 1px solid $blue;
+            float: none;
+            overflow: hidden;
+            position: relative;
+        }
+
+        a {
+            padding: 12px 20px;
+
+            &.active { background: $red; }
+        }
     }
 
     .lvl2 {
         background: darken( $blue, 10%);
 
         li { border-top: 1px solid darken( $blue, 20%); }
+        a { padding: 12px 20px 12px 40px; }
     }
 
     .lvl3 {
         background: darken( $blue, 20%);
 
         li { border-top: 1px solid darken( $blue, 30%); }
+         a { padding: 12px 20px 12px 60px; }
+    }
+}
+
+.sub-nav {
+    background: none;
+    border: 0;
+    color: $white;
+    display: block;
+    height: 45px;
+    padding: 20px 24px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 5;
+
+    &.icon-arrow {
+        &:before,
+        &:after {
+            @include transition( all, 0.2s, ease-in-out );
+
+            background: $white;
+            content: "";
+            display: block;
+            height: 8px;
+            position: absolute;
+            margin: auto;
+            top: 20px;
+            width: 2px;
+        }
+
+        &:before {
+            @include rotate(-45deg, 1px 0px);
+
+            left: 21px;
+        }
+
+        &:after {
+            @include rotate(45deg, 1px 0px);
+
+            right: 21px;
+        }
+
+        &.active {
+            &:before {
+                @include rotate(-135deg, 1px 0px);
+            }
+            &:after {
+                @include rotate(135deg, 1px 0px);
+            }
+        }
+    }
+}
+
+.menu {
+    background: none;
+    border: 0;
+    float: right;
+    height: 45px;
+    padding: 8px;
+    width: 45px;
+
+    .line {
+        @include transition( all, 0.2s, ease-in-out );
+
+        background: $white;
+        display: block;
+        height: 2px;
+        margin: 2px auto;
+        position: relative;
+        top: 0;
+        width: 15px;
+    }
+
+    &.bottom {
+        background: rgba( 255, 255, 255, 0.75 );
+        border: 1px solid $blue;
+        bottom: 15px;
+        position: fixed;
+        right: 15px;
+        z-index: 1;
+
+        .line { background: $blue; }
+    }
+}
+
+.mobile-nav {
+    background: rgba( 255, 255, 255, 0.75 );
+    border: 1px solid $blue;
+    bottom: 59px;
+    display: none;
+    padding: 0;
+    position: fixed;
+    right: 15px;
+    z-index: 10;
+
+    ul {
+        margin-bottom: 0;
+        padding: 0;
+
+        & > li {
+            opacity: 0;
+            bottom: -20px;
+        }
+
+        li { position: relative; }
+    }
+
+    a {
+        color: $white;
+        display: block;
+        margin-bottom: 0;
+    }
+
+    .lvl1 {
+        background: $blue;
+        width: 250px;
+
+        li {
+            border-top: 1px solid darken( $blue, 20%);
+
+            &:first-child { border-top: 0; }
+        }
+
+        a { padding: 10px 50px 10px 20px; }
+    }
+
+    .lvl2 {
+        background: darken( $blue, 10%);
+        display: none;
+
+        li {
+            border-top: 1px solid darken( $blue, 20%);
+
+            &:first-child { border-top: 0; }
+        }
+        a { padding: 10px 50px 10px 30px; }
+    }
+
+    .lvl3 {
+        background: darken( $blue, 20%);
+        display: none;
+
+        li {
+            border-top: 1px solid darken( $blue, 30%);
+
+            &:first-child { border-top: 0; }
+        }
+        a { padding: 10px 50px 10px 40px; }
     }
 }

@@ -15,7 +15,7 @@ Master Builder is a simple out of the box front-end templating base used for bui
 - Full responsive framework (number of columns easily manageable)
 - Responsive tables
     * Ability to swipe left/right on mobile device for long tables
-    * Ability to "print" the entire table into a PDF for users to view the table in their mobile device and very easy to [use](#mobile-tables)
+    * Ability to "print" the entire table into a PDF for users to view the table in their mobile device and very easy to [use](#mobile-responsive-tables)
     * Awesome mobile menu animation
 - IE9 Placeholder fallback
 - Dynamically add background images meant to have `background: cover` property, without hard coding in CSS
@@ -27,6 +27,8 @@ Master Builder is a simple out of the box front-end templating base used for bui
 - Lazy loading images (uses [jQuery_lazyload](https://github.com/tuupola/jquery_lazyload) )
 
 ##Release History
+`v1.3.0` - Converted mobile menu into jQuery Plugin.
+
 `v1.2.1` - Updated PDF Table usage
 
 `v1.2.0` - Converted jsPDF table printing into jQuery Plugin.
@@ -174,9 +176,9 @@ Master_Builder/
 **Note: ** I placed `_delete` files in empty folders so Git will push the folders to the repo.  You can delete these files onces you have set up the boilerplate.
 
 ###What Is Reponsible For What
-`_scripts/modules/rr.mobileMenu.js` - Where the cool animation happens for the mobile menu.
+`_scripts/modules/rr.mobileMenu.js` - Where the mobile menu is initialized.
 
-`_scripts/modules/rr.tableScrollbar.js` - Where the table printing happens.
+`_scripts/modules/rr.tableScrollbar.js` - Where the table printing is initialized.
 
 `_scripts/plugins/minified/ScrollToPlugin.min.js` - Responsible for scrolling the page while using TweenMax.  Dependent on TweenMax.
 
@@ -206,24 +208,15 @@ Master_Builder/
 
 `_scss/ie.scss` - IE8 Specific CSS fixes
 
-##Mobile Tables
+##Mobile Responsive Tables
 ###Problem
 Tables with large number of columns and responsive websites don't mix well.  The majority's solution is to wrap the `table` with a div and assign an `overflow-x: scroll` property to allow the users swipe left and right.  But users still can't get a glimpse or an overview of the entire table.
 
-###Solution
+###A Possible Solution
 The framework will wrap all tables with the class name `.printableTable` and create a button as a call to action to "print" and the option to save the table in PDF format by utilizing MrRio's [jsPDF](http://mrrio.github.io/jsPDF/) plugin.  Users have now the ability to view the table in their mobile phones regardless of the manufacturer and or operating system. They can pinch to zoom in or out and swipe in any direction. iOS users has the option of opening the printed table in iBooks or their preferred PDF reader while Android users will save the PDF file in their device automatically and open it in their preferred PDF reader.
 
 ##Usage of Features
-###IE9 Placeholder Fallback
-For all `input` tags that you want to use the `placeholder` property, add an `.input-placeholder` class and add a data attribute named `data-placeholder` with the desired placeholder text.  JS will do the rest.
-
-###Image Background Cover
-Add `.backstretch` on the `div` that you wish to have the image to have a `background: cover` property.  Then add data attribute named `data-background` with the path of the the image.  JS will do the rest.
-
-###Printable Table
-Add `.printableTable` on the `table` element that you want the plugin to wrap on mobile device.  If the table fits in the mobile device, it will not wrap it in a `div` and generate the `button` for the user to click.  Add a data attribute named `data-title` if you want to use the table title as the filename for the PDF.
-
-####HtmlTable to PDF Usage ~~Customize Print Settings~~ 
+####HtmlTable to PDF Usage (jquery.pdfTable)
 ```javascript
 $(element).pdfTable( 'init', {
     position: 'float', // top, bottom, float
@@ -248,6 +241,65 @@ Format is the paper size.  Available options are `'a3'`, `'a4'`, `'a5'`, `'lette
 
 The last 4 options are the margins that will be set when the table is printed on the PDF.
 
+###Mobile Menu  (jquery.mobileMenu)
+```html
+<div id="primary-nav">
+    <nav class="nav" role="navigation">
+        <div class="wrap">
+            <h1>
+                <a href="/">Master Builder</a>
+            </h1>
+        </div>
+
+        <ul class="lvl1">
+            <li>
+                <a href="#" class="no-link"><span>Level 1</span></a>
+                <ul class="lvl2">
+                    <li><a href="/standard/"><span>Standard Content</span></a></li>
+                    <li><a href="/grid/"><span>Grid System</span></a></li>
+                    <li>
+                        <a href="#"><span>Level 2</span></a>
+                        <ul class="lvl3">
+                            <li><a href="#"><span>Level 3</span></a></li>
+                            <li><a href="#"><span>Level 3</span></a></li>
+                            <li><a href="#"><span>Level 3</span></a></li>
+                            <li><a href="#"><span>Level 3</span></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</div>
+```
+You **must** follow the markup in order for the plugin to work that it is designed to be.  If one element or class is missing from the markup, the plugin might not work properly.  This plugin currently supports up to 3 levels only.
+
+Add `.no-link` to `a` tags if it will not lead to anywhere.  This way when a user clicks on the link, the dropdown (if available) will open.
+
+```javascript
+$('#primary-nav').mobileMenu('init', {
+    dropdownPos: 'static', // static, absolute
+    menuPos: 'top', // top, bottom
+    displayOn: 'all' // mobile, tablet, desktop/all
+});
+```
+Use `$('#primary-nav').mobileMenu('init');` to initialize the plugin.  If you don't assign any options, it will be set to the defaults `static`, `top` and `all`;
+
+`displayOn` is which devices you want the mobile menu to display on.  The default option for this is `all`.
+
+`menuPos` is where you want the mobile menu to be positioned.  The default option for this is `top`.
+
+`dropdownPos` is if you want the page to scroll up to the top of the page when the user taps on the mobile menu icon.  This option is only applicable for `menuPos: 'top'`.
+
+###IE9 Placeholder Fallback
+For all `input` tags that you want to use the `placeholder` property, add an `.input-placeholder` class and add a data attribute named `data-placeholder` with the desired placeholder text.  JS will do the rest.
+
+###Image Background Cover
+Add `.backstretch` on the `div` that you wish to have the image to have a `background: cover` property.  Then add data attribute named `data-background` with the path of the the image.  JS will do the rest.
+
+###Printable Table
+Add `.printableTable` on the `table` element that you want the plugin to wrap on mobile device.  If the table fits in the mobile device, it will not wrap it in a `div` and generate the `button` for the user to click.  Add a data attribute named `data-title` if you want to use the table title as the filename for the PDF.
+
 ###Lazy Load Images
 `<img>` tags must have the class `lazy` attached to it and a data attribute named `data-original` containing the path of the image.  JS will do the rest.
 
@@ -255,8 +307,6 @@ The last 4 options are the margins that will be set when the table is printed on
 If you found any bugs, would like to contribute, have comments or suggestions, head down to the [issues section](https://github.com/oninross/master_builder/issues) and log it in.  I will be more than happy to discuss it.
 
 ##Features to Come
-- CTA button to be on top of table
-- Customizable mobile menu to be either in the header or floating on on the bottom
 - Google Material Design components
 
 ##Credits
@@ -270,8 +320,3 @@ If you found any bugs, would like to contribute, have comments or suggestions, h
 Copyright 2015 [Infinite Imaginations](http://www.infiniteimaginations.co/#/hello/)
 
 Licensed under the MIT License
-
-
-
-
-

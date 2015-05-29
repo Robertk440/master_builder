@@ -12,7 +12,7 @@ var RR = (function (parent, $) {
     var wrap = function() {
         var $contentTable = $('.printableTable');
 
-        if ( !$contentTable.parent().hasClass('table-wrapper') && $contentTable.parent().hasHorizontalScrollBar() ){
+        if ( $contentTable.length && !$contentTable.parent().hasClass('table-wrapper') && $contentTable.parent().hasHorizontalScrollBar() ){
             $contentTable.pdfTable( 'init', {
                 position: 'float', // top, bottom, float
                 orientation: 'l',   // landscape (l), portrait (p)

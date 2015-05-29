@@ -123,7 +123,13 @@ cite, p {
     a { font-size: inherit; }
 }
 
-img { margin-bottom: 15px; }
+img {
+    display: block;
+    height: auto;
+    margin: 0 auto 10px;
+    max-width: 100%;
+    width: 100%;
+}
 
 p {
     word-break: break-word;
@@ -143,14 +149,6 @@ a {
 
 button {
     &:focus { outline: 0; }
-}
-
-img {
-    display: block;
-    height: auto;
-    margin: 0 auto 10px;
-    max-width: 100%;
-    width: 100%;
 }
 
 .grid {
@@ -223,9 +221,9 @@ img {
 
     height: 100%;
     margin: auto;
-    padding: 20px $gutter;
-    position: relative;
     max-width: 960px;
+    padding: 0 $gutter;
+    position: relative;
 }
 
 svg.ripple {
@@ -349,6 +347,7 @@ svg.ripple {
 .standard-banner {
     color: $white;
     height: 180px;
+    margin-bottom: 20px;
 }
 
 
