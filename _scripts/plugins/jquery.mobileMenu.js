@@ -60,7 +60,6 @@
 
                 $mobileMenu.on('click', function (){
                     if ( !$el.hasClass('active') ) {
-                        console.log('a')
                         $el.addClass('active');
 
                         tl.play();
@@ -73,17 +72,14 @@
                             TweenMax.to( window, 0.75, { scrollTo: { y: 0, ease: Ease.easeInOut } } );
                         }
                     } else {
-                        console.log('B')
                         $el.removeClass('active');
 
                         tl.reverse();
 
-                        if ( isMobileDevice ){
-                            $set
-                                .slideUp()
-                                .find('.icon-arrow.active')
-                                .removeClass('active');
-                        }
+                        $set
+                            .slideUp()
+                            .find('.icon-arrow.active')
+                            .removeClass('active');
 
                         TweenMax.staggerTo( $dropdownList, 0.5, { opacity: 0, top: -20, ease: Expo.easeOut }, 0.1 );
 
@@ -136,7 +132,9 @@
                             TweenMax.staggerTo( $lvl3.find('li'), 0.5, { opacity: 0, top: -20, ease: Expo.easeOut }, 0.1 );
                         }
                     } else {
+                        console.log('inactive');
                         if ($this.parent().parent().hasClass('lvl1')) {
+                            console.log('level1');
                             $index = $this.parent().index();
                             $parentIndex = 0;
 
@@ -172,48 +170,38 @@
                 // Primary Nav Mouse Listeners
                 $el.on('mouseover', '.no-link', function (){
                     console.log('1');
-                    var $this = $(this);
+                    var $this = $(this),
+                        $index,
+                        $parentIndex;
 
-                    if ( !isMobileDevice ){
-                        $this.next().next().stop( true, false ).slideDown();
-                    }
                 }).on('mouseout', '.no-link', function (){
                     console.log('2');
                     var $this = $(this);
 
-                    if ( !isMobileDevice ){
-                        $this.next().next().stop( true, false ).slideUp();
-                    }
                 }).on('click', '.no-link', function (e){
                     console.log('3');
                     e.preventDefault();
                     var $this = $(this);
 
-                    if ( isMobileDevice ){
-                        $this.next().trigger('click');
-                    } else {
-                        // $this.next().next().stop( true, false ).slideDown();
-                    }
+                    $this.next().trigger('click');
 
                     ripple(e, $this);
                 }).on('mouseover', '.lvl2 a', function (){
                     var $this = $(this);
 
-                    // if ( isMobileDevice ){
+                    if ( isMobileDevice ){
                         $this.parent().parent().stop( true, false ).slideDown();
-                    // }
+                    }
                 }).on('mouseout', '.lvl2 a', function (){
                     var $this = $(this);
 
-                    // if ( isMobileDevice ){
+                    if ( isMobileDevice ){
                         $this.parent().parent().stop( true, false ).slideUp();
-                    // }
+                    }
                 }).on('click', '.lvl2 a', function (e){
                     var $this = $(this);
 
-                    // if ( isMobileDevice ){
-                        $this.next().trigger('click');
-                    // }
+                    $this.next().trigger('click');
 
                     ripple(e, $this);
                 });
