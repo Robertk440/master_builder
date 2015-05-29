@@ -13,7 +13,7 @@
                                 <li><a href="/standard/"><span>Standard Content</span></a></li>
                                 <li><a href="/grid/"><span>Grid System</span></a></li>
                                 <li>
-                                    <a href="#"><span>Level 2</span></a>
+                                    <a href="#go-to-some-link"><span>Level 2</span></a>
                                     <ul class="lvl3">
                                         <li><a href="#"><span>Level 3</span></a></li>
                                         <li><a href="#"><span>Level 3</span></a></li>
