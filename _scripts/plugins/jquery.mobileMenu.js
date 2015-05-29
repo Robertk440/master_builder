@@ -1,4 +1,8 @@
+/* global TweenMax: true, TimelineMax: true, jQuery: true, Expo: true, Ease: true, ripple: true */
+
+
 (function( $ ){
+    'use strict';
     var methods = {
         init : function( el, options ) {
             var $el = el,
@@ -13,16 +17,20 @@
                 _dropdownPos = settings.dropdownPos,
                 _displayOn = settings.displayOn,
                 $mobileMenuMarkup = '<button class="menu js-mobile-menu"><span class="line top"></span><span class="line mid"></span><span class="line bot"></span></button>',
-                $subNavMarkup = '<button class="sub-nav js-sub-nav icon-arrow"><span class="vh">Sub-navigation</span></button>';
+                $subNavMarkup = '<button class="sub-nav js-sub-nav icon-arrow"><span class="vh">Sub-navigation</span></button>',
+                _el,
+                $lvl1,
+                $lvl2,
+                $lvl3,
+                $set;
 
 
             if ( _menuPos === 'top' ) {
-                var _el = $el,
-                    $lvl1 = _el.find('.lvl1'),
-                    $lvl2 = _el.find('.lvl2'),
-                    $lvl3 = _el.find('.lvl3'),
-                    $tabHeight = $lvl1.find('li').height(),
-                    $set = $lvl1.add( $lvl2 ).add( $lvl3 );
+                _el = $el,
+                $lvl1 = _el.find('.lvl1'),
+                $lvl2 = _el.find('.lvl2'),
+                $lvl3 = _el.find('.lvl3'),
+                $set = $lvl1.add( $lvl2 ).add( $lvl3 );
 
                 _el
                     .addClass( _displayOn )
@@ -47,13 +55,13 @@
                             .after( $mobileMenuMarkup )
                                 .next().addClass( _menuPos + ' ' + _displayOn );
 
-                var _el = $('.js-mobile-menu'),
-                    $mobileNav = $('.mobile-nav'),
-                    $lvl1 = $mobileNav.find('.lvl1'),
-                    $lvl2 = $mobileNav.find('.lvl2'),
-                    $lvl3 = $mobileNav.find('.lvl3'),
-                    $set = $lvl2.add( $lvl3 );
-                    $dropdownList = $mobileNav.find('ul li');
+                _el = $('.js-mobile-menu'),
+                $mobileNav = $('.mobile-nav'),
+                $lvl1 = $mobileNav.find('.lvl1'),
+                $lvl2 = $mobileNav.find('.lvl2'),
+                $lvl3 = $mobileNav.find('.lvl3'),
+                $set = $lvl2.add( $lvl3 );
+                $dropdownList = $mobileNav.find('ul li');
 
                 // Insert Subnav Markup after Level 1 menu items
                 $lvl1.find('ul').each(function (){
@@ -257,9 +265,12 @@
             }).on('click', '.lvl2 a', function (e){
                 var $this = $(this);
 
-                $this.next().trigger('click');
+                if ( $this.attr('src') === '#' && $this.parent().hasClass('no-link') ){
+                    $this.next().trigger('click');
+                }
 
                 ripple(e, $this);
+
             });
         }
     };
