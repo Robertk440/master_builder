@@ -307,7 +307,6 @@ Add `.printableTable` on the `table` element that you want the plugin to wrap on
 If you found any bugs, would like to contribute, have comments or suggestions, head down to the [issues section](https://github.com/oninross/master_builder/issues) and log it in.  I will be more than happy to discuss it.
 
 ##Features to Come
-- Customizable mobile menu to be a plugin
 - Google Material Design components
 
 ##Credits

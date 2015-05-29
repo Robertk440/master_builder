@@ -246,7 +246,6 @@
 <p>If you found any bugs, would like to contribute, have comments or suggestions, head down to the <a href="https://github.com/oninross/master_builder/issues">issues section</a> and log it in.  I will be more than happy to discuss it.</p>
 <h2 id="features-to-come">Features to Come</h2>
 <ul>
-<li>Customizable mobile menu to be a plugin</li>
 <li>Google Material Design components</li>
 </ul>
 <h2 id="credits">Credits</h2>
