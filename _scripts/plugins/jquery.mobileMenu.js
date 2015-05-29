@@ -5,8 +5,13 @@
     'use strict';
     var methods = {
         init : function( el, options ) {
-            var $el = el,
-                settings = $.extend({
+            var $el = el;
+
+            if ( !$el.length ) {
+                return false;
+            }
+
+            var settings = $.extend({
                     // These are the defaults.
                     dropdownPos: 'static', // static, absolute
                     menuPos: 'top', // top, bottom
