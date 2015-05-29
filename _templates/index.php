@@ -41,6 +41,7 @@
 <li>Lazy loading images (uses <a href="https://github.com/tuupola/jquery_lazyload">jQuery_lazyload</a> )</li>
 </ul>
 <h2 id="release-history">Release History</h2>
+<p><code>v1.3.1</code> - Minor bug fixes.</p>
 <p><code>v1.3.0</code> - Converted mobile menu into jQuery Plugin.</p>
 <p><code>v1.2.1</code> - Updated PDF Table usage</p>
 <p><code>v1.2.0</code> - Converted jsPDF table printing into jQuery Plugin.</p>
@@ -247,6 +248,7 @@
 <h2 id="features-to-come">Features to Come</h2>
 <ul>
 <li>Google Material Design components</li>
+<li>Support IE8 for <code>jquery.mobileMenu</code></li>
 </ul>
 <h2 id="credits">Credits</h2>
 <p><a href="http://www.bitneko.com/">Ang Ziwei</a> for creating the gruntfile.</p>

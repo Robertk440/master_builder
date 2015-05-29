@@ -27,6 +27,8 @@ Master Builder is a simple out of the box front-end templating base used for bui
 - Lazy loading images (uses [jQuery_lazyload](https://github.com/tuupola/jquery_lazyload) )
 
 ##Release History
+`v1.3.1` - Minor bug fixes.
+
 `v1.3.0` - Converted mobile menu into jQuery Plugin.
 
 `v1.2.1` - Updated PDF Table usage
@@ -308,6 +310,7 @@ If you found any bugs, would like to contribute, have comments or suggestions, h
 
 ##Features to Come
 - Google Material Design components
+- Support IE8 for `jquery.mobileMenu`
 
 ##Credits
 [Ang Ziwei](http://www.bitneko.com/) for creating the gruntfile.
