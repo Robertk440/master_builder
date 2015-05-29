@@ -19,6 +19,8 @@
                 $mobileMenuMarkup = '<button class="menu js-mobile-menu"><span class="line top"></span><span class="line mid"></span><span class="line bot"></span></button>',
                 $subNavMarkup = '<button class="sub-nav js-sub-nav icon-arrow"><span class="vh">Sub-navigation</span></button>',
                 _el,
+                $mobileNav,
+                $dropdownList,
                 $lvl1,
                 $lvl2,
                 $lvl3,
@@ -98,7 +100,6 @@
                     }
                 });
 
-                var $mobileNav = $('.mobile-nav');
                 $mobileNav.on('click', '.no-link', function (){
                     var $this = $(this);
 
@@ -121,9 +122,10 @@
             tl.pause();
 
             // Declare Eventlisteners
+            $dropdownList = _el.find('ul li');
+
             var $mobileMenu = $('.js-mobile-menu'),
-                $subNav = $('.js-sub-nav'),
-                $dropdownList = _el.find('ul li');
+                $subNav = $('.js-sub-nav');
 
             $mobileMenu.on('click', function (){
                 var $this = $(this);
