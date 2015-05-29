@@ -1,4 +1,5 @@
 (function( $ ){
+    // B: jsPDF plugin
     /**
      * Creates new jsPDF document object instance.
      *
@@ -2581,7 +2582,6 @@
         jsPDFAPI.processJPG = function(/*data, index, alias, compression, dataAsBinaryString*/) {
             return this.processJPEG.apply(this, arguments);
         };
-
     })(jsPDF.API);
     
     (function (jsPDFAPI) {
@@ -4081,7 +4081,7 @@
      */
 
     (function(jsPDFAPI) {
-    'use strict'
+        'use strict'
 
         /*
          * @see http://www.w3.org/TR/PNG-Chunks.html
@@ -4569,7 +4569,6 @@
 
             throw new Error("Unsupported PNG image data, try using JPEG instead.");
         }
-
     })(jsPDF.API)
     /** @preserve
     jsPDF Silly SVG plugin
@@ -9319,73 +9318,82 @@
             };
         }
     })(typeof self !== "undefined" && self || typeof window !== "undefined" && window || this);
+    // E: jsPDF plugin
+
+    // B: Where the fun stuff happens
+    $.fn.hasHorizontalScrollBar = function() {
+        return this.get(0).scrollWidth > this.width();
+    };
 
     var methods = {
         init : function( el, options ) {
-            var el = el,
-                settings = $.extend({
-                // These are the defaults.
-                position: 'bottom', // top, bottom, float
-                orientation: 'l',
-                unit: 'pt',
-                format: 'a4',
-                marginTop: 20,
-                marginRight: 20,
-                marginBottom: 20,
-                marginLeft: 20
-            }, options );
+            var _el = el;
+ 
+            if ( _el.length && !_el.parent().hasClass('table-wrapper') && _el.parent().hasHorizontalScrollBar() ){
+                var settings = $.extend({
+                    // These are the defaults.
+                    position: 'bottom', // top, bottom, float
+                    orientation: 'l',
+                    unit: 'pt',
+                    format: 'a4',
+                    marginTop: 20,
+                    marginRight: 20,
+                    marginBottom: 20,
+                    marginLeft: 20
+                }, options );
 
-            $('body').on('click', '.js-print-table', function (){
-                var pdfTitle = el.data('title');
+                $('body').on('click', '.js-print-table', function (){
+                    var pdfTitle = _el.data('title');
 
-                // PDF Settings to churn out jsPDF('orientation', 'unit', 'format');
-                var pdf = new jsPDF(settings.orientation, settings.unit, settings.format);
-                var source = el.parent()[0];
+                    // PDF Settings to churn out jsPDF('orientation', 'unit', 'format');
+                    var pdf = new jsPDF(settings.orientation, settings.unit, settings.format);
+                    var source = _el.parent()[0];
 
-                // Margins to set on the paper
-                var margins = {
-                    top: settings.marginTop,
-                    bottom: settings.marginBottom,
-                    left: settings.marginLeft,
-                    right: settings.marginRight,
-                    width: '100%'
-                };
+                    // Margins to set on the paper
+                    var margins = {
+                        top: settings.marginTop,
+                        bottom: settings.marginBottom,
+                        left: settings.marginLeft,
+                        right: settings.marginRight,
+                        width: '100%'
+                    };
 
-                // Where the magic happens
-                pdf.fromHTML(
-                    source,
-                    margins.left,
-                    margins.top, {
-                        'width': margins.width,
-                    },
-                    function (dispose) {
-                        // save the pdf
-                        pdf.save( pdfTitle + '.pdf');
-                    },
-                    margins
-                );
-            });
+                    // Where the magic happens
+                    pdf.fromHTML(
+                        source,
+                        margins.left,
+                        margins.top, {
+                            'width': margins.width,
+                        },
+                        function (dispose) {
+                            // save the pdf
+                            pdf.save( pdfTitle + '.pdf');
+                        },
+                        margins
+                    );
+                });
 
-            var _position = settings.position.toLowerCase();
-            switch ( _position ){
-                case 'bottom':
-                    return el.wrap( '<div class="table-wrapper"></div>' )
-                        .parent()
-                            .after('<button class="btn-print js-print-table" >Print Table</button>');
-                    break;
-                case 'top':
-                    return el.wrap( '<div class="table-wrapper"></div>' )
-                        .parent()
-                            .before('<button class="btn-print js-print-table" >Print Table</button>');
-                    break;
-                case 'float':
-                    return el.wrap( '<div class="table-wrapper"></div>' )
-                        .parent().prepend('<button class="btn-print icon icon-print js-print-table" ></button>')
-                        .parent().find('button').pin({
-                            containerSelector: '.table-wrapper',
-                            padding: { top: 45 }
-                        });
-                    break;
+                var _position = settings.position.toLowerCase();
+                switch ( _position ){
+                    case 'bottom':
+                        return _el.wrap( '<div class="table-wrapper"></div>' )
+                            .parent()
+                                .after('<button class="btn-print js-print-table" >Print Table</button>');
+                        break;
+                    case 'top':
+                        return _el.wrap( '<div class="table-wrapper"></div>' )
+                            .parent()
+                                .before('<button class="btn-print js-print-table" >Print Table</button>');
+                        break;
+                    case 'float':
+                        return _el.wrap( '<div class="table-wrapper"></div>' )
+                            .parent().prepend('<button class="btn-print icon icon-print js-print-table" ></button>')
+                            .parent().find('button').pin({
+                                containerSelector: '.table-wrapper',
+                                padding: { top: 45 }
+                            });
+                        break;
+                }
             }
         },
         destroy : function( el ) {
@@ -9400,6 +9408,7 @@
         hasHorizontalScrollBar : function ( el ){
             return el.get(0).scrollWidth > el.width();
         }
+        // E: Where the fun stuff happens
     };
 
     $.fn.pdfTable = function( method, options ) {
