@@ -83,14 +83,12 @@
                     var $this = $(this);
 
                     if ( !$this.hasClass('active') ) {
-                        $this.addClass('active');
                         $mobileNav.slideDown();
 
                         tl.play();
 
                         TweenMax.staggerTo( $lvl1.find('> li'), 2, { opacity: 1, bottom: 0, ease: Expo.easeOut }, 0.1 );
                     } else {
-                        $this.removeClass('active');
                         $mobileNav.slideUp();
 
                         tl.reverse();
@@ -139,8 +137,6 @@
                     $this.addClass('active');
 
                     tl.play();
-
-
 
                     $lvl1.slideDown(function (){
                         TweenMax.staggerTo( $lvl1.find('> li'), 2, { opacity: 1, top: 0, ease: Expo.easeOut }, 0.1 );
@@ -277,7 +273,6 @@
                 }
 
                 ripple(e, $this);
-
             });
         }
     };

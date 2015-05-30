@@ -224,6 +224,8 @@
     z-index: 10;
 
     ul {
+        @include normalise-list();
+
         margin-bottom: 0;
         padding: 0;
 
