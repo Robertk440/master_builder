@@ -12,6 +12,7 @@
                             <ul class="lvl2">
                                 <li><a href="/standard/"><span>Standard Content</span></a></li>
                                 <li><a href="/grid/"><span>Grid System</span></a></li>
+                                <li><a href="/material-design/"><span>Material Design</span></a></li>
                                 <li>
                                     <a href="#go-to-some-link"><span>Level 2</span></a>
                                     <ul class="lvl3">

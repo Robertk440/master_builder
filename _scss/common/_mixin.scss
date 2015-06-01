@@ -40,8 +40,8 @@
 }
 
 @mixin box-shadow($horizontalOffset, $verticalOffset, $blurRadius, $spreadRadius, $color) {
-       -moz-box-shadow: $horizontalOffset $verticalOffset $blurRadius $spreadRadius $color;
-    -webkit-box-shadow: $horizontalOffset $verticalOffset $blurRadius $spreadRadius $color;
+    -webkit-box-shadow: $horizontalOffset $verticalOffset $blurRadius $spreadRadius $color;       
+        -moz-box-shadow: $horizontalOffset $verticalOffset $blurRadius $spreadRadius $color;
             box-shadow: $horizontalOffset $verticalOffset $blurRadius $spreadRadius $color;
 }
 
@@ -98,7 +98,7 @@
 }
 
 //CSS3 element scale
-@mixin scale ($scale: 1,$origin: center) {
+@mixin scale ($scale: 1, $origin: center) {
     -webkit-transform: scale($scale);
         -ms-transform: scale($scale);
             transform: scale($scale);
