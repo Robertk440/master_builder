@@ -10,26 +10,33 @@
 //     }
 // }
 
-button,
-.cta {
+// Buttons and CTAs
+.btn{
 	@include transition( all, 0.25s, ease-in-out );
 	
 	background: none;
 	border: 0;
 	border-radius: 3px;
 	color: $blue;
-	display: block;
 	font-size: 1.6em;
 	overflow: hidden;
 	padding: 10px;
 	position: relative;
 	width: auto;
 
-	&.colored { color: darken( $blue, 10%); } 
+	&.colored { 
+		background: $blue;
+		color: $white;
+
+		&:hover { background: darken( $blue, 10%); }
+	} 
+
 	&.disabled { 
 		background: lighten( $grey, 30%);
 		color: lighten( $grey, 10%);
 		cursor: default;
+
+		&:hover { @extend .shadow-z0; }
 	}
 
 	&:hover { @extend .shadow-z1; }
@@ -37,10 +44,30 @@ button,
 	svg.ripple circle { fill: $grey; }
 }
 
+.cta {
+	color: $blue;
+	display: block;
+	padding: 10px;
+
+	&:hover { text-decoration: underline; }
+}
+
+.flat:hover { @extend .shadow-z1; }
+
+
+// Shadows
+.shadow-z0 { box-shadow: 0 0 0 0 rgba(0, 0, 0, 0) !important; }
 .shadow-z1 { box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12); }
 .shadow-z2 { box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) }
 .shadow-z3 { box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19); }
 .shadow-z4 { box-shadow: 0 16px 28px 0 rgba(0, 0, 0, 0.22), 0 25px 55px 0 rgba(0, 0, 0, 0.21); }
 .shadow-z5 { box-shadow: 0 27px 24px 0 rgba(0, 0, 0, 0.2), 0 40px 77px 0 rgba(0, 0, 0, 0.22) }
 
+
+// Card
+.card {
+	border-radius: 2px;
+	min-height: 100px;
+	padding: 10px;
+}
 

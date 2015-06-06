@@ -11,7 +11,7 @@ var RR = (function (parent, $){
         $('#primary-nav').mobileMenu('init', {
             dropdownPos: 'static', // static, absolute
             menuPos: 'top', // top, bottom
-            displayOn: 'all' // mobile, tablet, desktop/all
+            displayOn: 'mobile' // mobile, tablet, desktop/all
         });
     };
 

@@ -162,6 +162,7 @@ button {
 }
 
 [class^="col-"], [class*=" col-"] {
+    margin-bottom: 20px;
     width: 100%;
 
     div { font-size: inherit; }
@@ -185,10 +186,12 @@ button {
     float: left;
     margin-right: 15px;
 }
+
 .pull-right {
     float: right;
     margin-left: 15px;
 }
+
 .no-border { border-bottom: 0 !important; border-top: 0 !important; }
 
 .vh {
@@ -342,6 +345,8 @@ svg.ripple {
 ========================================================================== */
 .container-fluid {
     @extend %container;
+
+    .wrap { @extend .clearfix }
 }
 
 .standard-banner {
