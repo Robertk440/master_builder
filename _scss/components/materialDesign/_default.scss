@@ -10,6 +10,7 @@
 //     }
 // }
 
+
 // Buttons and CTAs
 .btn{
 	@include transition( all, 0.25s, ease-in-out );
@@ -52,11 +53,59 @@
 	&:hover { text-decoration: underline; }
 }
 
-.flat:hover { @extend .shadow-z1; }
+.flat {
+	@extend .shadow-z0;
+	
+	&:hover { @extend .shadow-z0; }
+}
+
+.raised {
+	@extend .shadow-z1;
+
+	&:hover { @extend .shadow-z2; }
+
+	&.disabled { 
+		@extend .shadow-z1;
+
+		&:hover { @extend .shadow-z1; }
+	}
+}
+
+.action {
+	@extend .shadow-z1;
+	@include transition( all, 0.2s, ease-in-out );
+
+	background: $blue;
+	border-radius: 50%;
+
+	&:hover { @extend .shadow-z2; }
+}
+
+.menu {
+	.line {
+        @include transition( all, 0.2s, ease-in-out );
+
+        background: $white;
+        display: block;
+        height: 2px;
+        margin: 2px auto;
+        position: relative;
+        top: 0;
+        width: 15px;
+    }
+}
+
+
+// Cards
+.card {
+	border-radius: 2px;
+	min-height: 100px;
+	padding: 10px 20px;
+}
 
 
 // Shadows
-.shadow-z0 { box-shadow: 0 0 0 0 rgba(0, 0, 0, 0) !important; }
+.shadow-z0 { box-shadow: 0 0 0 0 rgba(0, 0, 0, 0); }
 .shadow-z1 { box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12); }
 .shadow-z2 { box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) }
 .shadow-z3 { box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19); }
@@ -64,10 +113,71 @@
 .shadow-z5 { box-shadow: 0 27px 24px 0 rgba(0, 0, 0, 0.2), 0 40px 77px 0 rgba(0, 0, 0, 0.22) }
 
 
-// Card
-.card {
-	border-radius: 2px;
-	min-height: 100px;
-	padding: 10px;
+// Input
+input[type="text"] {
+	@include transition( all, 0.2s, ease-in-out );
+
+	border: none;
+	border-bottom: 1px solid lighten( $grey, 25% );
+	font-size: $default-font-size;
+	font-weight: $light;
+	padding: 10px 0;
+	width: 100%;
+
+	&:focus { 
+		border-bottom: 2px solid $blue;
+		color: $black;
+		outline: 0;
+	}
+
+	&[disabled]  {
+		border-bottom: 1px dotted lighten( $grey, 25% );
+
+		&:hover { cursor: not-allowed; }
+	}
 }
+
+.floating {	
+	position: relative;
+
+	.placeholder { 
+		@include transition( all, 0.2s, ease-in-out );
+
+		font-size: $default-font-size;
+		position: absolute;
+		top: 8px;
+	}
+
+	.hint {
+		display: block;
+		font-weight: $bold;
+		opacity: 0;
+		padding: 5px 0;
+		position: relative;
+		top: -5px;
+		width: 100%;
+	}
+
+	&.focus { 
+		.placeholder { 
+			color: $blue;
+			font-size: 1em;
+			top: -10px;
+		}
+
+		.hint {
+			opacity: 1;
+			top: 0;
+		}
+	}	
+}
+
+
+
+
+
+
+
+
+
 

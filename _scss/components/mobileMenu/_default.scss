@@ -69,6 +69,8 @@
         // padding: 0 !important;
     }
 
+    .menu { float: right; }
+
     .wrap {
         @include box-shadow(0, 2px, 5px, 0, rgba(0, 0, 0, 0.26));
         @include clearfix();
@@ -183,8 +185,7 @@
 
 .menu {
     background: none;
-    border: 0;
-    float: right;
+    border: 0;    
     height: 45px;
     padding: 8px;
     width: 45px;

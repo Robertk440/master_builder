@@ -346,7 +346,7 @@ svg.ripple {
 .container-fluid {
     @extend %container;
 
-    .wrap { @extend .clearfix }
+    .wrap { @extend .clearfix; }
 }
 
 .standard-banner {
